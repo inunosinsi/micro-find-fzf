@@ -10,7 +10,7 @@ function find(bp, args)
 	local pattern = ""
 	
 	for i = 1, #args do
-		pattern = args[i] .. " "
+		pattern = args[i] .. "* "
 	end
 
 	cmd = cmd .. pattern .. "| fzf'"
