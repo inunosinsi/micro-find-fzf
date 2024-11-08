@@ -8,7 +8,7 @@ $ git clone https://github.com/inunosinsi/micro-find-fzf.git ~/.config/micro/plu
 ```
 ## Usage
 When opening a file.  
-```&gt; find PATTERN```
+```> find PATTERN```
 
 When opening the file structure of any directory.  
-```&gt; ftree PATTERN```
+```> ftree PATTERN```
