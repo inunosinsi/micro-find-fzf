@@ -1,4 +1,4 @@
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 
 local micro = import("micro")
 local shell = import("micro/shell")
@@ -10,10 +10,29 @@ function find(bp, args)
 	local pattern = ""
 	
 	for i = 1, #args do
-		pattern = "*" .. args[i] .. "* "
+		pattern = args[i] .. "* "
 	end
 
 	cmd = cmd .. pattern .. "| fzf'"
+
+	local output, err = shell.RunInteractiveShell(cmd, false, true)
+    if err ~= nil then
+    	micro.InfoBar():Error(err)
+    else
+        fzfOutput(output, {bp})
+    end
+end
+
+function ftree(bp, args)
+	local cmd = "sh -c 'find ./ -type d -name "
+	local pattern = ""
+	
+	for i = 1, #args do
+		pattern = "\""..args[i] .."*\" "
+	end
+
+	cmd = cmd .. pattern .. "| fzf --preview \"tree -C {} | head -200\"'"
+	--micro.InfoBar():Error(cmd)
 
 	local output, err = shell.RunInteractiveShell(cmd, false, true)
     if err ~= nil then
@@ -39,5 +58,9 @@ end
 function init()
     config.MakeCommand("find", function(bp, args)
     	find(bp, args)
+    end, config.NoComplete)
+
+    config.MakeCommand("ftree", function(bp, args)
+    	ftree(bp, args)
     end, config.NoComplete)
 end
