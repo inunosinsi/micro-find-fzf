@@ -7,8 +7,8 @@ $ sudo apt install git fzf
 $ git clone https://github.com/inunosinsi/micro-find-fzf.git ~/.config/micro/plug/find-fzf
 ```
 ## Usage
-When opening a file.
+When opening a file.  
 ```&gt; find PATTERN```
 
-When opening the file structure of any directory.
+When opening the file structure of any directory.  
 ```&gt; ftree PATTERN```
